@@ -1,0 +1,36 @@
+<template>
+    <div>
+        <Link :href="route('Home')">Back</Link>
+        <form @submit.prevent="handleSubmit" >
+            <div >
+                <label for="title">Title</label><br>
+                <input type="text" v-model="form.title" name="title" id="title" class="border-2">
+            </div>
+            <div>
+                <label for="author">Author</label><br>
+                <input type="text" v-model="form.author" name="author" id="author" class="border-2">
+            </div>
+            <div>
+                <label for="content">Content</label><br>
+                <textarea type="text" v-model="form.content" name="content" id="content" class="border-2"></textarea>
+            </div>
+            <div>
+                <button type="submit" >Create Post</button>
+            </div>
+        </form>
+    </div>
+</template>
+
+<script setup>
+import { useForm } from '@inertiajs/vue3';
+const form = useForm({
+    title:"",
+    author:"",
+    content:"",
+})
+
+const handleSubmit = ()=>{
+    form.post('/store')
+}
+</script>
+
